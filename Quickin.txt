@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parceria Estratégica · Quickin + Distrito</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#d0095f;--brand-dim:rgba(208,9,95,.09);--brand-dim2:rgba(208,9,95,.18);
+  --bg:#0d0d0d;--bg2:#161616;--bg3:#1e1e1e;--bg4:#242424;
+  --fg1:#f2f2f2;--fg2:#999;--fg3:#555;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);--border-brand:rgba(208,9,95,.3);
+  --font:'Red Hat Display',system-ui,sans-serif;
+  --r:12px;--r-lg:20px;--r-pill:100px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+*{cursor:none!important}
+html,body{font-family:var(--font);background:var(--bg);color:var(--fg1);overflow:hidden;height:100vh;width:100vw}
+#cur{position:fixed;left:-300px;top:-300px;width:8px;height:8px;background:var(--brand);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .12s,height .12s}
+#cur-ring{position:fixed;left:-300px;top:-300px;width:30px;height:30px;border:1px solid rgba(208,9,95,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:0;transition:width .2s,height .2s,opacity .3s}
+body.m-on #cur-ring{opacity:1}
+body.hov #cur{width:14px;height:14px}
+body.hov #cur-ring{width:40px;height:40px;opacity:.3}
+#cv{position:fixed;inset:0;z-index:0;pointer-events:none}
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--brand);z-index:600;width:0;transition:width .5s cubic-bezier(.16,1,.3,1)}
+#snav{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:500;display:flex;flex-direction:column;gap:8px}
+.nd{width:5px;height:5px;border-radius:50%;border:1px solid var(--fg3);background:transparent;transition:all .22s}
+.nd.on{background:var(--brand);border-color:var(--brand);transform:scale(1.7)}
+.nd:hover{border-color:var(--brand)}
+#nav-up{position:fixed;right:36px;top:calc(50% - 124px);z-index:500}
+#nav-dn{position:fixed;right:36px;top:calc(50% + 88px);z-index:500}
+.arr{width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:rgba(255,255,255,.03);color:var(--fg2);display:flex;align-items:center;justify-content:center;transition:all .2s;backdrop-filter:blur(8px)}
+.arr:hover{background:var(--brand);border-color:var(--brand);color:#fff}
+.arr:disabled{opacity:.15;pointer-events:none}
+.arr svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+#sct{position:fixed;right:16px;bottom:24px;font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--fg3);z-index:500}
+#slides{position:fixed;inset:0;z-index:10}
+.slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .45s ease,transform .45s cubic-bezier(.16,1,.3,1);transform:translateY(20px);padding:52px 80px 68px;overflow:hidden}
+.slide.active{opacity:1;pointer-events:all;transform:none}
+.slide.out{opacity:0;transform:translateY(-20px);transition:opacity .25s ease,transform .25s ease}
+.inner{width:100%;max-width:1040px;margin:0 auto}
+.sh{margin-bottom:32px}
+.sh-ow{display:flex;align-items:center;gap:9px;margin-bottom:14px}
+.sh-line{width:28px;height:1.5px;background:var(--brand);flex-shrink:0}
+.sh-lbl{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--brand)}
+.sh h2{font-size:clamp(36px,4.4vw,60px);font-weight:700;line-height:1.0;letter-spacing:-.028em;color:var(--fg1)}
+.sh h2 em{font-style:normal;color:var(--brand)}
+.sh-sub{font-size:13.5px;color:var(--fg3);margin-top:9px;max-width:520px;line-height:1.65}
+h1.hero{font-size:clamp(52px,6.2vw,92px);font-weight:700;line-height:.96;letter-spacing:-.03em;color:var(--fg1)}
+h1.hero em{font-style:normal;color:var(--brand)}
+.vline{width:1px;background:linear-gradient(var(--brand),transparent);margin:16px 0}
+.badge{display:inline-flex;align-items:center;gap:9px;background:var(--brand-dim);border:1px solid var(--border-brand);padding:6px 14px;border-radius:var(--r-pill);font-size:10.5px;font-weight:700;color:var(--brand);letter-spacing:.1em;text-transform:uppercase}
+.pulse{width:5px;height:5px;border-radius:50%;background:var(--brand);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
+@keyframes shine{0%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+.tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);background:var(--brand-dim);border:1px solid var(--border-brand);padding:3px 11px;border-radius:var(--r-pill);white-space:nowrap;transition:all .4s ease}
+.tag.glow{background:var(--brand);color:#fff;box-shadow:0 0 12px rgba(208,9,95,.6),0 0 24px rgba(208,9,95,.3)}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px 24px;position:relative;overflow:hidden;transition:border-color .22s,transform .22s,box-shadow .22s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.card:hover{border-color:var(--border-brand);transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,0,0,.4)}
+.card:hover::before{transform:scaleX(1)}
+.ic{width:36px;height:36px;border-radius:9px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ic svg{width:16px;height:16px;stroke:var(--brand);stroke-width:1.6;fill:none}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.r{opacity:0;transform:translateY(13px);transition:opacity .46s cubic-bezier(.16,1,.3,1),transform .46s cubic-bezier(.16,1,.3,1)}
+.r.in{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+.d4{transition-delay:.28s}.d5{transition-delay:.35s}.d6{transition-delay:.42s}
+.dring{position:absolute;border-radius:50%;border:1px solid rgba(208,9,95,.07);pointer-events:none;z-index:0}
+.hl{display:flex;gap:11px;align-items:flex-start;padding:8px 11px;border-radius:8px;border:1px solid transparent;transition:background .2s,border-color .2s}
+.hl:hover{background:var(--brand-dim);border-color:var(--border-brand)}
+.hl-dot{width:4px;height:4px;border-radius:50%;background:var(--brand);margin-top:7px;flex-shrink:0}
+.hl-t{font-size:13px;color:var(--fg2);line-height:1.6}
+.chk{display:flex;gap:11px;align-items:flex-start;padding:9px 12px;border-radius:8px;border:1px solid transparent;transition:background .2s,border-color .2s}
+.chk:hover{background:var(--brand-dim);border-color:var(--border-brand)}
+.chk-icon{width:18px;height:18px;border-radius:5px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.chk-icon svg{width:9px;height:9px;stroke:var(--brand);stroke-width:2.5;fill:none}
+.chk-t{font-size:13px;color:var(--fg2);line-height:1.6}
+.idx-item{display:flex;align-items:center;gap:13px;padding:10px 13px;border-radius:var(--r);border:1px solid transparent;transition:all .18s}
+.idx-item:hover{background:var(--brand-dim);border-color:var(--border-brand)}
+.idx-num{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--brand);min-width:22px}
+.idx-label{font-size:13.5px;color:var(--fg2)}
+.idx-item:hover .idx-label{color:var(--fg1)}
+.rec-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:22px 20px 18px;transition:border-color .22s,transform .2s,background .22s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.rec-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.rec-card:hover{transform:translateY(-3px);background:var(--bg3)}
+.rec-card:hover::after{transform:scaleX(1)}
+.rec-card.c1::after{background:#ef4444}.rec-card.c1:hover{border-color:rgba(239,68,68,.35)}
+.rec-card.c2::after{background:#f97316}.rec-card.c2:hover{border-color:rgba(249,115,22,.35)}
+.rec-card.c3::after{background:var(--fg3)}.rec-card.c3:hover{border-color:var(--border2)}
+.rec-card.c4::after{background:#3b82f6}.rec-card.c4:hover{border-color:rgba(59,130,246,.35)}
+.rec-card.c5::after{background:var(--brand)}.rec-card.c5:hover{border-color:var(--border-brand)}
+.rec-card.c6::after{background:#22c55e}.rec-card.c6:hover{border-color:rgba(34,197,94,.35)}
+.rec-num{font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--fg3);text-transform:uppercase}
+.ag-row{display:flex;align-items:baseline;gap:14px;padding:9px 18px;border-bottom:1px solid var(--border);transition:background .2s}
+.ag-row:hover{background:var(--brand-dim)}
+.ag-row.lit{background:rgba(208,9,95,.08)}
+.ag-time{font-size:10.5px;font-weight:700;letter-spacing:.08em;color:var(--fg3);min-width:38px;transition:color .4s;font-variant-numeric:tabular-nums}
+.ag-row.lit .ag-time{color:var(--brand)}
+.ag-label{font-size:13px;color:var(--fg2);line-height:1.45;transition:color .4s}
+.ag-row.lit .ag-label{color:var(--fg1);font-weight:600}
+#kbh{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg3);z-index:500;display:flex;align-items:center;gap:7px;opacity:0;transition:opacity .5s;pointer-events:none}
+#kbh.vis{opacity:1}
+.kb{border:1px solid var(--border2);border-radius:4px;padding:2px 6px;font-size:9.5px;color:var(--fg3);background:var(--bg2)}
+@keyframes flashSweep{0%{transform:translateX(-120%) skewX(-18deg)}100%{transform:translateX(300%) skewX(-18deg)}}
+.subtitle-flash::after{content:'';position:absolute;top:0;left:0;width:35%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.13) 40%,rgba(255,255,255,.28) 50%,rgba(255,255,255,.13) 60%,transparent 100%);transform:translateX(-120%) skewX(-18deg);animation:flashSweep 3.2s ease-in-out infinite;animation-delay:1.8s;pointer-events:none;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="prog"></div>
+<nav id="snav"></nav>
+<button class="arr" id="nav-up" disabled><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button>
+<button class="arr" id="nav-dn"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
+<div id="sct"></div>
+<div id="kbh"><span class="kb">↑↓</span> ou <span class="kb">←→</span></div>
+
+<div id="slides">
+
+<!-- 0 CAPA -->
+<div class="slide active" data-index="0">
+  <div class="dring" style="width:600px;height:600px;right:-160px;top:50%;transform:translateY(-50%)"></div>
+  <div class="dring" style="width:360px;height:360px;right:-30px;top:50%;transform:translateY(-50%)"></div>
+  <div class="inner">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;" class="r d1">
+      <div class="badge"><div class="pulse"></div>Parceria Estratégica</div>
+    </div>
+    <div class="vline r d2" style="height:44px;"></div>
+    <h1 class="hero r d3" style="white-space:nowrap;">Distrito <em>+</em> Quickin</h1>
+    <div class="vline r d4" style="height:28px;"></div>
+    <p class="r d5 subtitle-flash" style="font-size:20px;color:var(--fg2);line-height:1.5;margin-top:8px;white-space:nowrap;position:relative;overflow:hidden;">Transformando o futuro do recrutamento com inteligência artificial e dados.</p>
+  </div>
+</div>
+
+<!-- 1 ÍNDICE -->
+<div class="slide" data-index="1">
+  <div class="inner">
+    <div class="sh r">
+      <div class="sh-ow"><div class="sh-line"></div><div class="sh-lbl">Navegação</div></div>
+      <h2>O que veremos<br><em>nesta parceria</em></h2>
+    </div>
+    <div class="r d2" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;max-width:760px;">
+      <div class="idx-item" onclick="goTo(2)"><div class="idx-num">01</div><div class="idx-label">Contexto</div></div>
+      <div class="idx-item" onclick="goTo(5)"><div class="idx-num">04</div><div class="idx-label">Proposta Distrito</div></div>
+      <div class="idx-item" onclick="goTo(3)"><div class="idx-num">02</div><div class="idx-label">Objetivo da Parceria</div></div>
+      <div class="idx-item" onclick="goTo(6)"><div class="idx-num">05</div><div class="idx-label">Lógica de Troca de Valor</div></div>
+      <div class="idx-item" onclick="goTo(4)"><div class="idx-num">03</div><div class="idx-label">Proposta Quickin</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 2 CONTEXTO -->
+<div class="slide" data-index="2">
+  <div class="inner" style="max-width:1040px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;">
+      <div>
+        <div class="sh r">
+          <div class="sh-ow"><div class="sh-line"></div><div class="sh-lbl">Contexto</div></div>
+          <h2>Um mercado<br><em>em transformação</em></h2>
+        </div>
+        <p class="r d2" style="font-size:14px;color:var(--fg2);line-height:1.75;max-width:440px;">O mercado de recrutamento vive um cenário de crescente complexidade, impulsionado pelo aumento do volume de vagas, pela disputa por talentos qualificados e pela necessidade de decisões mais rápidas e assertivas em Gente & Gestão.</p>
+        <p class="r d3" style="font-size:14px;color:var(--fg2);line-height:1.75;max-width:440px;margin-top:12px;">Nesse contexto, <strong style="color:var(--fg1);">eficiência, experiência do candidato e inteligência de dados</strong> deixam de ser diferenciais e passam a ser elementos centrais da estratégia de atração e seleção.</p>
+        <p class="r d4" style="font-size:14px;color:var(--fg2);line-height:1.75;max-width:440px;margin-top:12px;">Quickin e Distrito compartilham uma visão comum: o uso de <strong style="color:var(--brand);">inteligência artificial e dados</strong> como pilares fundamentais para transformar a forma como empresas recrutam, selecionam e desenvolvem pessoas.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;" class="r d3">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;">Visão compartilhada</div>
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;">
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .2s;" onmouseenter="this.style.background='var(--brand-dim)'" onmouseleave="this.style.background=''">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--brand);stroke-width:1.8;fill:none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--fg1);margin-bottom:2px;">Velocidade de decisão</div><div style="font-size:11.5px;color:var(--fg3);">Triagem e análise em tempo real com IA</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .2s;" onmouseenter="this.style.background='var(--brand-dim)'" onmouseleave="this.style.background=''">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--brand);stroke-width:1.8;fill:none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--fg1);margin-bottom:2px;">Experiência do candidato</div><div style="font-size:11.5px;color:var(--fg3);">Processos mais humanos e engajantes</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid var(--border);transition:background .2s;" onmouseenter="this.style.background='var(--brand-dim)'" onmouseleave="this.style.background=''">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--brand);stroke-width:1.8;fill:none"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--fg1);margin-bottom:2px;">Inteligência de dados</div><div style="font-size:11.5px;color:var(--fg3);">Decisões baseadas em evidências e métricas</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px 20px;transition:background .2s;" onmouseenter="this.style.background='var(--brand-dim)'" onmouseleave="this.style.background=''">
+            <div style="width:32px;height:32px;border-radius:8px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--brand);stroke-width:1.8;fill:none"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg></div>
+            <div><div style="font-size:13px;font-weight:700;color:var(--fg1);margin-bottom:2px;">Ecossistema de inovação</div><div style="font-size:11.5px;color:var(--fg3);">Conexão com startups e empresas em crescimento</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3 OBJETIVO -->
+<div class="slide" data-index="3">
+  <div class="inner" style="max-width:1040px;">
+    <div class="sh r" style="text-align:center;">
+      <div class="sh-ow" style="justify-content:center;"><div class="sh-line"></div><div class="sh-lbl">Objetivo</div><div class="sh-line"></div></div>
+      <h2>Objetivo da<br><em>Parceria</em></h2>
+      <p class="sh-sub" style="margin:9px auto 0;text-align:center;">Três frentes estratégicas de alto impacto para transformar o recrutamento.</p>
+    </div>
+    <div class="g3 r d2" style="gap:16px;max-width:960px;margin:0 auto;">
+      <div class="card" style="padding:32px 28px;background:linear-gradient(135deg,rgba(208,9,95,.06) 0%,var(--bg2) 60%);border-color:var(--border-brand);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+          <div style="width:52px;height:52px;border-radius:14px;background:var(--brand-dim);border:1px solid var(--border-brand);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:var(--brand);stroke-width:1.6;fill:none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span style="font-size:36px;font-weight:700;color:rgba(208,9,95,.18);line-height:1;letter-spacing:-.04em;">01</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg1);margin-bottom:14px;line-height:1.15;white-space:nowrap;">Amplificação de marcas</div>
+        <div class="hl"><div class="hl-dot"></div><div class="hl-t">Amplificar a presença das marcas no ecossistema de inovação e startups</div></div>
+      </div>
+      <div class="card" style="padding:32px 28px;background:linear-gradient(135deg,rgba(59,130,246,.06) 0%,var(--bg2) 60%);border-color:rgba(59,130,246,.2);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+          <div style="width:52px;height:52px;border-radius:14px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:#3b82f6;stroke-width:1.6;fill:none"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <span style="font-size:36px;font-weight:700;color:rgba(59,130,246,.18);line-height:1;letter-spacing:-.04em;">02</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg1);margin-bottom:14px;line-height:1.15;white-space:nowrap;">Geração de demanda</div>
+        <div class="hl"><div class="hl-dot" style="background:#3b82f6;"></div><div class="hl-t">Gerar demanda qualificada e conexão com empresas em crescimento</div></div>
+      </div>
+      <div class="card" style="padding:32px 28px;background:linear-gradient(135deg,rgba(34,197,94,.06) 0%,var(--bg2) 60%);border-color:rgba(34,197,94,.2);">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;">
+          <div style="width:52px;height:52px;border-radius:14px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" style="width:24px;height:24px;stroke:#22c55e;stroke-width:1.6;fill:none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span style="font-size:36px;font-weight:700;color:rgba(34,197,94,.18);line-height:1;letter-spacing:-.04em;">03</span>
+        </div>
+        <div style="font-size:19px;font-weight:700;color:var(--fg1);margin-bottom:14px;line-height:1.15;white-space:nowrap;">Referência em inovação</div>
+        <div class="hl"><div class="hl-dot" style="background:#22c55e;"></div><div class="hl-t">Posicionar a agenda conjunta como referência em inovação aplicada a recrutamento e futuro do trabalho</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 PROPOSTA QUICKIN -->
+<div class="slide" data-index="4">
+  <div class="inner" style="max-width:1040px;">
+    <div style="display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start;">
+      <div>
+        <div class="sh r">
+          <div class="sh-ow"><div class="sh-line"></div><div class="sh-lbl">Proposta</div></div>
+          <h2 style="font-size:clamp(28px,3.2vw,46px);">Plataforma<br><em>Enterprise</em><br>Quickin</h2>
+        </div>
+        <p class="r d2" style="font-size:13.5px;color:var(--fg2);line-height:1.75;">Disponibilização do plano Enterprise da plataforma por um período de <strong style="color:var(--brand);">18 meses</strong>, contemplando uma estrutura completa de recrutamento com inteligência artificial.</p>
+        <div class="r d3" style="margin-top:18px;display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);">
+          <div class="pulse" style="flex-shrink:0;"></div>
+          <a href="https://www.quickin.io/" target="_blank" style="font-size:12px;color:var(--brand);line-height:1.5;text-decoration:none;font-weight:600;letter-spacing:.04em;">Quickin ↗</a>
+        </div>
+      </div>
+      <div class="r d2" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--fg3);margin-bottom:2px;grid-column:1/-1;">Recursos incluídos</div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Vagas ilimitadas</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Gestão centralizada de processos seletivos</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Vídeos de atração</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Recursos multimídia para apresentação de vagas</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Triagem por IA</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Match score e avaliação automatizada de candidatos</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Entrevistas por IA</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Voz e transcrição assistidas por inteligência artificial</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Automação</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Automação de etapas do processo seletivo</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Gestão de dados</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Relatórios, exportação e permissões customizadas</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Engajamento</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Testes, questionários e QCA integrados</div></div>
+        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Infraestrutura</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Site de vagas, integrações, automações e extensões</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 PROPOSTA DISTRITO -->
+<div class="slide" data-index="5">
+  <div class="inner" style="max-width:1000px;">
+    <div class="sh r" style="margin-bottom:20px;">
+      <div class="sh-ow"><div class="sh-line"></div><div class="sh-lbl">Contrapartidas</div></div>
+      <h2>Proposta<br><em>Distrito</em></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:11px;" class="r d2">
+      <div class="rec-card c5" style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--brand);flex-shrink:0;box-shadow:0 0 8px rgba(208,9,95,.6);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">01</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:var(--brand);margin-bottom:8px;line-height:1.15;">Post LinkedIn</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">Publicação de 1 post no LinkedIn com alcance para toda a rede do ecossistema Distrito.</div>
+      </div>
+      <div class="rec-card c4" style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;box-shadow:0 0 8px rgba(59,130,246,.5);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;">02</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#3b82f6;margin-bottom:8px;line-height:1.15;">Newsletter</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">1 conteúdo editorial em formato newsletter com visibilidade no portal do Distrito.</div>
+      </div>
+      <div class="rec-card c6" style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;box-shadow:0 0 8px rgba(34,197,94,.5);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#22c55e;">03</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#22c55e;margin-bottom:8px;line-height:1.15;">Artigo no Blog</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">1 artigo publicado no blog do Distrito com audiência qualificada do ecossistema.</div>
+      </div>
+      <div class="rec-card c5" style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--brand);flex-shrink:0;box-shadow:0 0 8px rgba(208,9,95,.6);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">04</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:var(--brand);margin-bottom:8px;line-height:1.15;">Painel de Evento</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">Participação em painel de evento do Distrito no <strong style="color:var(--brand);">2º Semestre de 2026</strong>.</div>
+      </div>
+      <div class="rec-card c2" style="padding:20px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#f97316;flex-shrink:0;box-shadow:0 0 8px rgba(249,115,22,.5);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f97316;">05</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#f97316;margin-bottom:8px;line-height:1.15;">Depoimento</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">Depoimento de <strong style="color:#f97316;">Gabriela Dantas</strong>, líder de Gente & Gestão do Distrito, no site da Quickin.</div>
+      </div>
+      <div class="rec-card c4" style="padding:20px;border-color:rgba(59,130,246,.3);">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:#3b82f6;flex-shrink:0;box-shadow:0 0 8px rgba(59,130,246,.5);"></div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;">06</div>
+        </div>
+        <div style="font-size:16px;font-weight:700;color:#3b82f6;margin-bottom:8px;line-height:1.15;">Santander X</div>
+        <div style="font-size:12px;color:var(--fg3);line-height:1.6;">Ação conjunta com distribuição de benefícios para startups do ecossistema.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6 LÓGICA DE VALOR -->
+<div class="slide" data-index="6">
+  <div class="inner" style="max-width:1020px;">
+    <div class="sh r" style="text-align:center;">
+      <div class="sh-ow" style="justify-content:center;"><div class="sh-line"></div><div class="sh-lbl">Troca de Valor</div><div class="sh-line"></div></div>
+      <h2>Lógica de<br><em>Troca de Valor</em></h2>
+      <p class="sh-sub" style="margin:9px auto 0;text-align:center;">A parceria se baseia em uma complementaridade clara entre tecnologia e ecossistema.</p>
+    </div>
+    <div class="r d2" style="display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center;margin-bottom:20px;">
+      <div class="card" style="padding:28px;background:linear-gradient(135deg,rgba(59,130,246,.08) 0%,var(--bg2) 60%);border-color:rgba(59,130,246,.25);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;margin-bottom:12px;">Quickin entrega</div>
+        <div style="font-size:28px;font-weight:700;color:var(--fg1);letter-spacing:-.02em;margin-bottom:12px;">Tecnologia</div>
+        <p style="font-size:13px;color:var(--fg2);line-height:1.65;">Uma plataforma completa de recrutamento com inteligência artificial aplicada à operação de ponta a ponta.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <div style="width:1px;height:40px;background:linear-gradient(transparent,var(--brand));"></div>
+        <div style="width:36px;height:36px;border-radius:50%;border:1px solid var(--border-brand);background:var(--brand-dim);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:var(--brand);stroke-width:2;fill:none"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        <div style="width:1px;height:40px;background:linear-gradient(var(--brand),transparent);"></div>
+      </div>
+      <div class="card" style="padding:28px;background:linear-gradient(135deg,rgba(208,9,95,.08) 0%,var(--bg2) 60%);border-color:var(--border-brand);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:12px;">Distrito contribui</div>
+        <div style="font-size:28px;font-weight:700;color:var(--fg1);letter-spacing:-.02em;margin-bottom:12px;">Ecossistema</div>
+        <p style="font-size:13px;color:var(--fg2);line-height:1.65;">Alcance, credibilidade e acesso qualificado ao ecossistema de inovação e startups.</p>
+      </div>
+    </div>
+    <div class="r d3">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:10px;">Essa combinação potencializa:</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px;">
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s;" onmouseenter="this.style.borderColor='var(--border-brand)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="width:4px;height:4px;border-radius:50%;background:var(--brand);margin-top:6px;flex-shrink:0;"></div><div style="font-size:12px;color:var(--fg2);line-height:1.55;">Geração de demanda qualificada</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s;" onmouseenter="this.style.borderColor='var(--border-brand)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="width:4px;height:4px;border-radius:50%;background:var(--brand);margin-top:6px;flex-shrink:0;"></div><div style="font-size:12px;color:var(--fg2);line-height:1.55;">Fortalecimento de marca institucional</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s;" onmouseenter="this.style.borderColor='var(--border-brand)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="width:4px;height:4px;border-radius:50%;background:var(--brand);margin-top:6px;flex-shrink:0;"></div><div style="font-size:12px;color:var(--fg2);line-height:1.55;">Posicionamento como referência em inovação aplicada a RH</div></div>
+        <div style="display:flex;align-items:flex-start;gap:10px;padding:12px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s;" onmouseenter="this.style.borderColor='var(--border-brand)'" onmouseleave="this.style.borderColor='var(--border)'"><div style="width:4px;height:4px;border-radius:50%;background:var(--brand);margin-top:6px;flex-shrink:0;"></div><div style="font-size:12px;color:var(--fg2);line-height:1.55;">Conexão direta com startups e empresas em crescimento</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7 ENCERRAMENTO -->
+<div class="slide" data-index="7">
+  <div class="dring" style="width:560px;height:560px;left:50%;top:50%;transform:translate(-50%,-50%)"></div>
+  <div class="dring" style="width:320px;height:320px;left:50%;top:50%;transform:translate(-50%,-50%)"></div>
+  <div class="inner" style="display:flex;flex-direction:column;align-items:center;text-align:center;">
+    <div class="badge r d1"><div class="pulse"></div>Parceria Estratégica · 2026</div>
+    <div class="r d2" style="width:1px;height:68px;background:linear-gradient(var(--brand),transparent);margin:16px auto;"></div>
+    <h1 class="r d3" style="font-size:clamp(58px,8.5vw,116px);font-weight:700;letter-spacing:-.033em;line-height:.93;color:var(--fg1);">Vamos<br><em style="color:var(--brand);">transformar</em><br>juntos.</h1>
+    <div class="r d4" style="margin-top:22px;font-size:22px;color:#0066FF;font-weight:700;letter-spacing:.02em;">Quickin</div>
+    <div class="r d5" style="margin-top:32px;">
+      <img src="data:image/png;base64,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" alt="Distrito" style="height:22px;opacity:.5;">
+    </div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const curEl=document.getElementById('cur'),ringEl=document.getElementById('cur-ring');
+let mx=-400,my=-400,rx=-400,ry=-400,mIn=false;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;curEl.style.left=mx+'px';curEl.style.top=my+'px';if(!mIn){mIn=true;rx=mx;ry=my;document.body.classList.add('m-on');}});
+(function raf(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ringEl.style.left=rx+'px';ringEl.style.top=ry+'px';requestAnimationFrame(raf);})();
+document.querySelectorAll('button,.nd,.card,.hl,.idx-item,.rec-card').forEach(el=>{el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));});
+
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+function rsCv(){cv.width=window.innerWidth;cv.height=window.innerHeight;}rsCv();window.addEventListener('resize',rsCv);
+const pts=Array.from({length:38},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15,r:Math.random()*.9+.3,o:Math.random()*.35+.18}));
+(function dp(){ctx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(208,9,95,'+p.o*.5+')';ctx.fill();});for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<80){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle='rgba(208,9,95,'+(0.03*(1-d/80))+')';ctx.lineWidth=.35;ctx.stroke();}}requestAnimationFrame(dp);})();
+
+const slides=document.querySelectorAll('.slide');
+const N=slides.length;
+const snavEl=document.getElementById('snav');
+for(let i=0;i<N;i++){const d=document.createElement('div');d.className='nd'+(i===0?' on':'');d.dataset.slide=i;snavEl.appendChild(d);}
+const sct=document.getElementById('sct');
+const btnUp=document.getElementById('nav-up');
+const btnDn=document.getElementById('nav-dn');
+const prog=document.getElementById('prog');
+let cur=0;let busy=false;
+sct.textContent='01/'+String(N).padStart(2,'0');
+
+function goTo(n){
+  if(busy||n===cur||n<0||n>=N)return;
+  busy=true;
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('out');
+  const prev=cur;cur=n;
+  setTimeout(()=>slides[prev].classList.remove('out'),280);
+  slides[cur].classList.add('active');
+  document.querySelectorAll('.nd').forEach((d,i)=>d.classList.toggle('on',i===cur));
+  sct.textContent=String(cur+1).padStart(2,'0')+'/'+String(N).padStart(2,'0');
+  btnUp.disabled=cur===0;btnDn.disabled=cur===N-1;
+  prog.style.width=((cur/(N-1))*100)+'%';
+  revealSlide(slides[cur]);
+  if(cur===0)setTimeout(()=>{},800);
+  setTimeout(()=>busy=false,500);
+}
+
+function revealSlide(s){
+  s.querySelectorAll('.r').forEach(el=>el.classList.remove('in'));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>s.querySelectorAll('.r').forEach(el=>el.classList.add('in'))));
+}
+
+document.querySelectorAll('.nd').forEach(d=>d.addEventListener('click',()=>goTo(+d.dataset.slide)));
+btnUp.addEventListener('click',()=>goTo(cur-1));
+btnDn.addEventListener('click',()=>goTo(cur+1));
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight')goTo(cur+1);
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft')goTo(cur-1);
+});
+
+let tx=0;
+document.addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50){d>0?goTo(cur+1):goTo(cur-1);}});
+
+let wLock=false;
+document.addEventListener('wheel',e=>{
+  if(wLock||busy)return;wLock=true;setTimeout(()=>wLock=false,700);
+  e.deltaY>0?goTo(cur+1):goTo(cur-1);
+},{passive:true});
+
+const kbh=document.getElementById('kbh');
+setTimeout(()=>kbh.classList.add('vis'),1500);
+setTimeout(()=>kbh.classList.remove('vis'),5500);
+
+revealSlide(slides[0]);
+</script>
+</body>
+</html>
