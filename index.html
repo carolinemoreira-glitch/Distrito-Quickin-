@@ -237,36 +237,83 @@ h1.hero em{font-style:normal;color:var(--brand)}
 
 <!-- 4 PROPOSTA QUICKIN -->
 <div class="slide" data-index="4">
-  <div class="inner" style="max-width:1040px;">
-    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0;" class="r">
-      <div class="sh-ow" style="margin-bottom:0;"><div class="sh-line"></div><div class="sh-lbl">Proposta</div></div>
+  <div class="inner" style="max-width:1060px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;" class="r">
+      <div>
+        <div class="sh-ow" style="margin-bottom:10px;"><div class="sh-line"></div><div class="sh-lbl">Proposta</div></div>
+        <h2 style="font-size:clamp(28px,3vw,46px);font-weight:700;letter-spacing:-.025em;color:var(--fg1);">Plataforma <span style="color:var(--brand);">Enterprise</span> Quickin</h2>
+      </div>
       <div style="text-align:right;">
         <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:4px;">Valor total do pacote</div>
         <div style="font-size:28px;font-weight:700;color:var(--brand);letter-spacing:-.02em;">R$ 37.104</div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start;">
-      <div>
-        <div class="sh" style="margin-bottom:20px;">
-          <h2 style="font-size:clamp(28px,3.2vw,46px);">Plataforma<br><em>Enterprise</em><br>Quickin</h2>
-        </div>
-        <p class="r d2" style="font-size:13.5px;color:var(--fg2);line-height:1.75;">Disponibilização do plano Enterprise da plataforma por um período de <strong style="color:var(--brand);">24 meses</strong>, contemplando uma estrutura completa de recrutamento com inteligência artificial.</p>
-        <div class="r d3" style="margin-top:18px;display:flex;align-items:center;gap:10px;padding:11px 14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);">
-          <div class="pulse" style="flex-shrink:0;"></div>
-          <a href="https://www.quickin.io/" target="_blank" style="font-size:12px;color:var(--brand);line-height:1.5;text-decoration:none;font-weight:600;letter-spacing:.04em;">Quickin ↗</a>
-        </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;" class="r d2">
+
+      <!-- 01 rosa -->
+      <div style="background:var(--bg2);border:1px solid rgba(208,9,95,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(208,9,95,.07)';this.style.borderColor='rgba(208,9,95,.5)';this.style.boxShadow='0 18px 44px rgba(208,9,95,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(208,9,95,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px rgba(208,9,95,.7);animation:pulse 2s infinite;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">01</div></div>
+        <div style="font-size:14px;font-weight:700;color:var(--brand);margin-bottom:7px;line-height:1.2;">Vagas ilimitadas</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Gestão centralizada de processos seletivos sem limite de vagas ativas.</div>
       </div>
-      <div class="r d2" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div style="font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--fg3);margin-bottom:2px;grid-column:1/-1;">Recursos incluídos</div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Vagas ilimitadas</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Gestão centralizada de processos seletivos</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Vídeos de atração</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Recursos multimídia para apresentação de vagas</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Triagem por IA</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Match score e avaliação automatizada de candidatos</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Entrevistas por IA</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Voz e transcrição assistidas por inteligência artificial</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Automação</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Automação de etapas do processo seletivo</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Gestão de dados</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Relatórios, exportação e permissões customizadas</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Engajamento</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Testes, questionários e QCA integrados</div></div>
-        <div class="card" style="padding:14px 16px;"><div style="display:flex;align-items:center;gap:10px;"><div class="ic" style="width:28px;height:28px;border-radius:7px;flex-shrink:0;"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div style="font-size:12px;font-weight:600;color:var(--fg1);">Infraestrutura</div></div><div style="font-size:11px;color:var(--fg3);margin-top:5px;line-height:1.5;padding-left:38px;">Site de vagas, integrações, automações e extensões</div></div>
+
+      <!-- 02 azul -->
+      <div style="background:var(--bg2);border:1px solid rgba(59,130,246,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(59,130,246,.07)';this.style.borderColor='rgba(59,130,246,.5)';this.style.boxShadow='0 18px 44px rgba(59,130,246,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(59,130,246,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#3b82f6;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,.7);animation:pulse 2s infinite;animation-delay:.4s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;">02</div></div>
+        <div style="font-size:14px;font-weight:700;color:#3b82f6;margin-bottom:7px;line-height:1.2;">Triagem por IA</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Match score e avaliação automatizada de candidatos com inteligência artificial.</div>
       </div>
+
+      <!-- 03 verde -->
+      <div style="background:var(--bg2);border:1px solid rgba(34,197,94,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(34,197,94,.07)';this.style.borderColor='rgba(34,197,94,.5)';this.style.boxShadow='0 18px 44px rgba(34,197,94,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(34,197,94,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#22c55e;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.7);animation:pulse 2s infinite;animation-delay:.8s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#22c55e;">03</div></div>
+        <div style="font-size:14px;font-weight:700;color:#22c55e;margin-bottom:7px;line-height:1.2;">Entrevistas por IA</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Voz e transcrição assistidas por inteligência artificial em tempo real.</div>
+      </div>
+
+      <!-- 04 laranja -->
+      <div style="background:var(--bg2);border:1px solid rgba(249,115,22,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(249,115,22,.07)';this.style.borderColor='rgba(249,115,22,.5)';this.style.boxShadow='0 18px 44px rgba(249,115,22,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(249,115,22,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#f97316;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#f97316;box-shadow:0 0 8px rgba(249,115,22,.7);animation:pulse 2s infinite;animation-delay:1.2s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f97316;">04</div></div>
+        <div style="font-size:14px;font-weight:700;color:#f97316;margin-bottom:7px;line-height:1.2;">Vídeos de atração</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Recursos multimídia para apresentação de vagas e atração de talentos.</div>
+      </div>
+
+      <!-- 05 rosa vivo -->
+      <div style="background:var(--bg2);border:1px solid rgba(244,63,94,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(244,63,94,.07)';this.style.borderColor='rgba(244,63,94,.5)';this.style.boxShadow='0 18px 44px rgba(244,63,94,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(244,63,94,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#f43f5e;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#f43f5e;box-shadow:0 0 8px rgba(244,63,94,.7);animation:pulse 2s infinite;animation-delay:1.6s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f43f5e;">05</div></div>
+        <div style="font-size:14px;font-weight:700;color:#f43f5e;margin-bottom:7px;line-height:1.2;">Automação</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Automação de etapas do processo seletivo para ganho de produtividade.</div>
+      </div>
+
+      <!-- 06 violeta -->
+      <div style="background:var(--bg2);border:1px solid rgba(168,85,247,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(168,85,247,.07)';this.style.borderColor='rgba(168,85,247,.5)';this.style.boxShadow='0 18px 44px rgba(168,85,247,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(168,85,247,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#a855f7;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,.7);animation:pulse 2s infinite;animation-delay:2s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#a855f7;">06</div></div>
+        <div style="font-size:14px;font-weight:700;color:#a855f7;margin-bottom:7px;line-height:1.2;">Engajamento</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Testes, questionários e QCA integrados ao processo seletivo.</div>
+      </div>
+
+      <!-- 07 ciano -->
+      <div style="background:var(--bg2);border:1px solid rgba(6,182,212,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(6,182,212,.07)';this.style.borderColor='rgba(6,182,212,.5)';this.style.boxShadow='0 18px 44px rgba(6,182,212,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(6,182,212,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#06b6d4;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;box-shadow:0 0 8px rgba(6,182,212,.7);animation:pulse 2s infinite;animation-delay:2.4s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#06b6d4;">07</div></div>
+        <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:7px;line-height:1.2;">Gestão de dados</div>
+        <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Relatórios, exportação e permissões customizadas para o RH.</div>
+      </div>
+
+      <!-- 08 âmbar — vigência -->
+      <div style="background:var(--brand-dim);border:1px solid var(--border-brand);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;display:flex;flex-direction:column;justify-content:center;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(208,9,95,.12)';this.style.boxShadow='0 18px 44px rgba(208,9,95,.2)'" onmouseleave="this.style.transform='';this.style.background='var(--brand-dim)';this.style.boxShadow=''">
+        <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;">Vigência</div>
+        <div style="font-size:28px;font-weight:700;color:var(--fg1);letter-spacing:-.02em;line-height:1;">24 meses</div>
+        <div style="width:24px;height:1px;background:var(--border-brand);margin:12px 0;"></div>
+        <a href="https://www.quickin.io/" target="_blank" style="font-size:12px;color:var(--brand);text-decoration:none;font-weight:700;letter-spacing:.04em;">Quickin ↗</a>
+      </div>
+
     </div>
   </div>
 </div>
