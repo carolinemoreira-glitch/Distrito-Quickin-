@@ -106,6 +106,7 @@ h1.hero em{font-style:normal;color:var(--brand)}
 .kb{border:1px solid var(--border2);border-radius:4px;padding:2px 6px;font-size:9.5px;color:var(--fg3);background:var(--bg2)}
 @keyframes flashSweep{0%{transform:translateX(-120%) skewX(-18deg)}100%{transform:translateX(300%) skewX(-18deg)}}
 .subtitle-flash::after{content:'';position:absolute;top:0;left:0;width:35%;height:100%;background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.13) 40%,rgba(255,255,255,.28) 50%,rgba(255,255,255,.13) 60%,transparent 100%);transform:translateX(-120%) skewX(-18deg);animation:flashSweep 3.2s ease-in-out infinite;animation-delay:1.8s;pointer-events:none;}
+@keyframes cardIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -237,10 +238,16 @@ h1.hero em{font-style:normal;color:var(--brand)}
 <!-- 4 PROPOSTA QUICKIN -->
 <div class="slide" data-index="4">
   <div class="inner" style="max-width:1040px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:0;" class="r">
+      <div class="sh-ow" style="margin-bottom:0;"><div class="sh-line"></div><div class="sh-lbl">Proposta</div></div>
+      <div style="text-align:right;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg3);margin-bottom:4px;">Valor total do pacote</div>
+        <div style="font-size:28px;font-weight:700;color:var(--brand);letter-spacing:-.02em;">R$ 37.104</div>
+      </div>
+    </div>
     <div style="display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:start;">
       <div>
-        <div class="sh r">
-          <div class="sh-ow"><div class="sh-line"></div><div class="sh-lbl">Proposta</div></div>
+        <div class="sh" style="margin-bottom:20px;">
           <h2 style="font-size:clamp(28px,3.2vw,46px);">Plataforma<br><em>Enterprise</em><br>Quickin</h2>
         </div>
         <p class="r d2" style="font-size:13.5px;color:var(--fg2);line-height:1.75;">Disponibilização do plano Enterprise da plataforma por um período de <strong style="color:var(--brand);">24 meses</strong>, contemplando uma estrutura completa de recrutamento com inteligência artificial.</p>
@@ -278,76 +285,71 @@ h1.hero em{font-style:normal;color:var(--brand)}
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;" class="r d2">
-      <!-- 01 -->
-      <div class="rec-card c5" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--brand);flex-shrink:0;box-shadow:0 0 8px rgba(208,9,95,.6);"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">01 · R$ 11.400/ano</div>
-        </div>
+
+      <!-- 01 rosa/brand -->
+      <div style="background:var(--bg2);border:1px solid rgba(208,9,95,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(208,9,95,.07)';this.style.borderColor='rgba(208,9,95,.5)';this.style.boxShadow='0 18px 44px rgba(208,9,95,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(208,9,95,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--brand);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 8px rgba(208,9,95,.7);animation:pulse 2s infinite;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">01 · R$ 11.400/ano</div></div>
         <div style="font-size:14px;font-weight:700;color:var(--brand);margin-bottom:7px;line-height:1.2;">Programa Gen AI Lab</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Imersão com startups e empresas de IA do ecossistema Distrito. 12 meses, presencial + digital.</div>
       </div>
-      <!-- 02 -->
-      <div class="rec-card c4" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;flex-shrink:0;box-shadow:0 0 8px rgba(59,130,246,.5);"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;">02 · R$ 30.000</div>
-        </div>
+
+      <!-- 02 azul -->
+      <div style="background:var(--bg2);border:1px solid rgba(59,130,246,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(59,130,246,.07)';this.style.borderColor='rgba(59,130,246,.5)';this.style.boxShadow='0 18px 44px rgba(59,130,246,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(59,130,246,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#3b82f6;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px rgba(59,130,246,.7);animation:pulse 2s infinite;animation-delay:.4s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b82f6;">02 · R$ 30.000</div></div>
         <div style="font-size:14px;font-weight:700;color:#3b82f6;margin-bottom:7px;line-height:1.2;">Report IA for HR</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Co-branding no relatório setorial: capa, contracapa e seção dedicada. Distribuído para toda a base Distrito.</div>
       </div>
-      <!-- 03 -->
-      <div class="rec-card c6" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;box-shadow:0 0 8px rgba(34,197,94,.5);"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#22c55e;">03 · R$ 3.000</div>
-        </div>
+
+      <!-- 03 verde -->
+      <div style="background:var(--bg2);border:1px solid rgba(34,197,94,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(34,197,94,.07)';this.style.borderColor='rgba(34,197,94,.5)';this.style.boxShadow='0 18px 44px rgba(34,197,94,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(34,197,94,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#22c55e;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.7);animation:pulse 2s infinite;animation-delay:.8s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#22c55e;">03 · R$ 3.000</div></div>
         <div style="font-size:14px;font-weight:700;color:#22c55e;margin-bottom:7px;line-height:1.2;">Blogpost IA no Recrutamento</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">2 artigos em parceria publicados em ambos os sites, com backlink mútuo. Blog Distrito: 30 mil sessões/mês.</div>
       </div>
-      <!-- 04 -->
-      <div class="rec-card c2" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:#f97316;flex-shrink:0;box-shadow:0 0 8px rgba(249,115,22,.5);"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f97316;">04 · R$ 2.000</div>
-        </div>
+
+      <!-- 04 laranja -->
+      <div style="background:var(--bg2);border:1px solid rgba(249,115,22,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(249,115,22,.07)';this.style.borderColor='rgba(249,115,22,.5)';this.style.boxShadow='0 18px 44px rgba(249,115,22,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(249,115,22,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#f97316;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#f97316;box-shadow:0 0 8px rgba(249,115,22,.7);animation:pulse 2s infinite;animation-delay:1.2s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f97316;">04 · R$ 2.000</div></div>
         <div style="font-size:14px;font-weight:700;color:#f97316;margin-bottom:7px;line-height:1.2;">4 Stories por Ano</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">4 sequências de stories no Instagram (1/trimestre) com link para a Quickin. 55,9 mil seguidores | 828 mil impressões/mês.</div>
       </div>
-      <!-- 05 -->
-      <div class="rec-card c5" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--brand);flex-shrink:0;box-shadow:0 0 8px rgba(208,9,95,.6);"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);">05 · R$ 3.000</div>
-        </div>
-        <div style="font-size:14px;font-weight:700;color:var(--brand);margin-bottom:7px;line-height:1.2;">Newsletter</div>
+
+      <!-- 05 rosa escuro -->
+      <div style="background:var(--bg2);border:1px solid rgba(244,63,94,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(244,63,94,.07)';this.style.borderColor='rgba(244,63,94,.5)';this.style.boxShadow='0 18px 44px rgba(244,63,94,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(244,63,94,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#f43f5e;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#f43f5e;box-shadow:0 0 8px rgba(244,63,94,.7);animation:pulse 2s infinite;animation-delay:1.6s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f43f5e;">05 · R$ 3.000</div></div>
+        <div style="font-size:14px;font-weight:700;color:#f43f5e;margin-bottom:7px;line-height:1.2;">Newsletter</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">1 menção na AI Factory News. Base: 11.600 inscritos | Abertura: ~25% | Cliques: ~5%. Seção com título, banner e CTA.</div>
       </div>
-      <!-- 06 -->
-      <div class="rec-card c3" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--fg2);flex-shrink:0;"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);">06</div>
-        </div>
-        <div style="font-size:14px;font-weight:700;color:var(--fg2);margin-bottom:7px;line-height:1.2;">Santander X Award 2026</div>
+
+      <!-- 06 violeta -->
+      <div style="background:var(--bg2);border:1px solid rgba(168,85,247,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(168,85,247,.07)';this.style.borderColor='rgba(168,85,247,.5)';this.style.boxShadow='0 18px 44px rgba(168,85,247,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(168,85,247,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#a855f7;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 8px rgba(168,85,247,.7);animation:pulse 2s infinite;animation-delay:2s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#a855f7;">06</div></div>
+        <div style="font-size:14px;font-weight:700;color:#a855f7;margin-bottom:7px;line-height:1.2;">Santander X Award 2026</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Visibilidade como apoiador oficial do programa. Branding nos materiais de divulgação do Santander X Award 2026.</div>
       </div>
-      <!-- 07 -->
-      <div class="rec-card c3" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <div style="width:7px;height:7px;border-radius:50%;background:var(--fg2);flex-shrink:0;"></div>
-          <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);">07</div>
-        </div>
-        <div style="font-size:14px;font-weight:700;color:var(--fg2);margin-bottom:7px;line-height:1.2;">Troca de Backlinks</div>
+
+      <!-- 07 ciano -->
+      <div style="background:var(--bg2);border:1px solid rgba(6,182,212,.22);border-radius:var(--r-lg);padding:18px;position:relative;overflow:hidden;cursor:default;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.background='rgba(6,182,212,.07)';this.style.borderColor='rgba(6,182,212,.5)';this.style.boxShadow='0 18px 44px rgba(6,182,212,.2)';this.querySelector('.cbar').style.transform='scaleX(1)'" onmouseleave="this.style.transform='';this.style.background='var(--bg2)';this.style.borderColor='rgba(6,182,212,.22)';this.style.boxShadow='';this.querySelector('.cbar').style.transform='scaleX(0)'">
+        <div class="cbar" style="position:absolute;bottom:0;left:0;right:0;height:2px;background:#06b6d4;transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.16,1,.3,1);"></div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><div style="width:7px;height:7px;border-radius:50%;background:#06b6d4;box-shadow:0 0 8px rgba(6,182,212,.7);animation:pulse 2s infinite;animation-delay:2.4s;"></div><div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#06b6d4;">07</div></div>
+        <div style="font-size:14px;font-weight:700;color:#06b6d4;margin-bottom:7px;line-height:1.2;">Troca de Backlinks</div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Troca de links entre os blogs Distrito e Quickin, fortalecendo a autoridade de domínio de ambos nos resultados de busca.</div>
       </div>
+
       <!-- Vigência -->
-      <div style="padding:18px;background:var(--brand-dim);border:1px solid var(--border-brand);border-radius:var(--r-lg);display:flex;flex-direction:column;justify-content:center;">
+      <div style="padding:18px;background:var(--brand-dim);border:1px solid var(--border-brand);border-radius:var(--r-lg);display:flex;flex-direction:column;justify-content:center;transition:all .25s cubic-bezier(.16,1,.3,1);" onmouseenter="this.style.transform='translateY(-6px) scale(1.02)';this.style.boxShadow='0 18px 44px rgba(208,9,95,.2)';this.style.background='rgba(208,9,95,.12)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.style.background='var(--brand-dim)'">
         <div style="font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:10px;">Vigência</div>
-        <div style="font-size:28px;font-weight:700;color:var(--fg1);letter-spacing:-.02em;line-height:1;">12<br>meses</div>
+        <div style="font-size:28px;font-weight:700;color:var(--fg1);letter-spacing:-.02em;line-height:1;">12 meses</div>
         <div style="width:24px;height:1px;background:var(--border-brand);margin:12px 0;"></div>
         <div style="font-size:11px;color:var(--fg3);line-height:1.6;">Vigência da parceria estratégica.</div>
       </div>
+
     </div>
   </div>
 </div>
